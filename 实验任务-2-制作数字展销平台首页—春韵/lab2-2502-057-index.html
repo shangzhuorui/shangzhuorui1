@@ -1,1 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>春韵 · 数字展销平台</title>
+    <link rel="stylesheet" href="css/lab2-01-123-index.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            background: #fbf7f0;
+            color: #3e2e21;
+            line-height: 1.5;
+            padding-top: 85px;
+            padding-bottom: 20px;
+        }
+
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #f3efe8 0%, #e6d9cc 100%);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            border-bottom: 2px solid #b48c5c;
+            padding: 8px 0;
+        }
+
+        .header-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            border-radius: 30px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo-text.fallback-logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4b6a3b;
+        }
+
+        .site-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #3a5e3a;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 #f3e9d2;
+        }
+
+        .top-nav .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .top-nav .nav-menu li {
+            float: left;
+            margin-left: 20px;
+        }
+
+        .top-nav .nav-menu li a {
+            display: inline-block;
+            padding: 10px 14px;
+            text-decoration: none;
+            color: #3e2e21;
+            font-weight: 500;
+            border-radius: 40px;
+            background: rgba(255, 250, 240, 0.6);
+            border: 1px solid #c9ad93;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .top-nav .nav-menu li a:hover {
+            background: #b48c5c;
+            color: white;
+            border-color: #8b6b4b;
+        }
+
+        .main-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 15px 25px;
+            position: relative;
+        }
+
+        .sidebar-left {
+            float: left;
+            width: 21%;
+            margin-right: 2%;
+            background: #fbf5ea;
+            padding: 18px 14px;
+            border: 1px solid #dac5b1;
+            border-radius: 24px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.03);
+            top: 5px;
+        }
+
+        .content-middle {
+            float: left;
+            width: 52%;
+            margin-right: 2%;
+        }
+
+        .right-fixed-ad {
+            position: fixed;
+            right: 25px;
+            top: 120px;
+            width: 22%;
+            max-width: 260px;
+            background: #fff9f0;
+            border: 2px solid #b48c5c;
+            border-radius: 28px;
+            padding: 18px 14px;
+            box-shadow: 8px 8px 0 rgba(180, 140, 92, 0.15);
+            z-index: 500;
+            backdrop-filter: blur(2px);
+        }
+
+        @media (max-width: 1000px) {
+            .right-fixed-ad { width: 200px; }
+        }
+
+        .category-box h3 {
+            color: #4b3a2b;
+            border-bottom: 2px dotted #b48c5c;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .category-nav {
+            list-style: none;
+        }
+        .category-nav li {
+            margin-bottom: 10px;
+        }
+        .category-nav li a {
+            text-decoration: none;
+            color: #3b2c1c;
+            padding: 6px 12px;
+            display: block;
+            background: #efe2d3;
+            border-radius: 30px;
+            border-left: 6px solid #a7b89e;
+            transition: 0.1s;
+            cursor: pointer;
+        }
+        .category-nav li a:hover {
+            background: #c7b5a2;
+            color: #1f2e1b;
+            border-left-color: #3a6b3a;
+        }
+
+        .left-tip {
+            background: #e3d5c0;
+            padding: 10px;
+            border-radius: 18px;
+            font-weight: 500;
+        }
+
+        .book-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin: 15px 0 25px;
+        }
+        .book-card {
+            background: white;
+            border-radius: 18px;
+            padding: 14px 10px 10px;
+            width: calc(25% - 14px);
+            box-shadow: 0 5px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e6d6c4;
+            transition: transform 0.2s;
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+        .book-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(100, 70, 40, 0.1);
+            border-color: #b48c5c;
+        }
+        .featured-book {
+            position: relative;
+        }
+        .featured-book:hover .hover-detail {
+            display: block !important;
+        }
+        .hover-detail {
+            pointer-events: auto;
+        }
+        .hover-detail .fake-btn {
+            cursor: pointer;
+            background: #9e7b56;
+        }
+        .hover-detail .fake-btn:hover {
+            background: #6b4f3c;
+        }
+
+        .book-cover img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid #ddd2c2;
+        }
+        .book-info h4 {
+            font-size: 1rem;
+            margin: 8px 0 4px;
+            color: #2e4a2e;
+        }
+        .author {
+            font-size: 0.8rem;
+            color: #7f6e5a;
+        }
+        .price {
+            font-weight: 700;
+            color: #b3541c;
+            margin-top: 5px;
+        }
+
+        .hot-list {
+            margin: 15px 0 20px;
+        }
+        .hot-item {
+            float: left;
+            width: 18%;
+            margin-right: 2.5%;
+            background: #fcf6ed;
+            border-radius: 20px;
+            padding: 10px 5px;
+            text-align: center;
+            border: 1px solid #dccbbc;
+            cursor: pointer;
+        }
+        .hot-item img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 5px;
+        }
+        .hot-item span {
+            font-weight: 500;
+            color: #4d3e2e;
+        }
+        .hot-item:hover {
+            background: #e7d9c8;
+        }
+        .hot-list::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .new-book-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0 10px;
+            background: #fffcf7;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            border: 1px solid #cfbcab;
+        }
+        .new-book-table th {
+            background: #9faf8e;
+            color: #1e3a1e;
+            padding: 12px 8px;
+            font-weight: 600;
+            border-bottom: 2px solid #7a9a6e;
+        }
+        .new-book-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e1d1c0;
+        }
+        .new-book-table tr:last-child td {
+            border-bottom: none;
+        }
+        .new-book-table tr:hover {
+            background: #f1ebe2;
+            cursor: pointer;
+        }
+
+        .ad-card {
+            margin-bottom: 22px;
+            background: #fef9ec;
+            padding: 15px;
+            border-radius: 24px;
+            border: 1px solid #e1cfb7;
+        }
+        .ad-card h3 {
+            color: #6b4226;
+            margin-bottom: 8px;
+        }
+        .coupon {
+            background: #b48c5c;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 40px;
+            text-align: center;
+            margin-top: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .coupon:hover {
+            background: #8b6239;
+        }
+        .ad-list {
+            list-style: none;
+        }
+        .ad-list li {
+            margin: 10px 0;
+        }
+        .ad-list a {
+            text-decoration: none;
+            color: #5e3e28;
+            cursor: pointer;
+        }
+        .ad-list a:hover {
+            text-decoration: underline;
+            color: #2d5720;
+        }
+
+        .section-title {
+            color: #2e4a2e;
+            border-left: 8px solid #b48c5c;
+            padding-left: 18px;
+            margin: 20px 0 12px;
+            font-weight: 550;
+        }
+
+        footer {
+            clear: both;
+        }
+
+        .left-tip p {
+            cursor: default;
+        }
+
+        @media (max-width: 900px) {
+            .right-fixed-ad { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-inner">
+            <div class="logo-area">
+                <img src="img/logo-placeholder.svg" alt="春韵Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                <span class="logo-text fallback-logo" style="display: none;">🌸春韵·书坊</span>
+                <h1 class="site-title">春韵数字展销</h1>
+            </div>
+            <nav class="top-nav">
+                <ul class="nav-menu clearfix">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">新书上架</a></li>
+                    <li><a href="#">畅销榜</a></li>
+                    <li><a href="#">关于春韵</a></li>
+                    <li><a href="#">联系</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-content clearfix">
+        <aside class="sidebar-left" style="position: relative; top: 0; left: 0;">
+            <div class="category-box">
+                <h3>📚 图书分类</h3>
+                <ul class="category-nav">
+                    <li><a href="#">文学小说</a></li>
+                    <li><a href="#">人文社科</a></li>
+                    <li><a href="#">经济管理</a></li>
+                    <li><a href="#">科技IT</a></li>
+                    <li><a href="#">艺术生活</a></li>
+                    <li><a href="#">少儿绘本</a></li>
+                    <li><a href="#">教育考试</a></li>
+                    <li><a href="#">进口原版</a></li>
+                </ul>
+            </div>
+            <div class="left-tip" style="position: relative; top: 5px; margin-top: 15px;">
+                <p>✨ 会员专享 满99减20</p>
+            </div>
+        </aside>
+
+        <main class="content-middle">
+            <section class="book-showcase">
+                <h2 class="section-title">📖 主编力荐 · 春韵必读</h2>
+                <div class="book-grid">
+                    <div class="book-card featured-book" style="position: relative;">
+                        <div class="book-cover">
+                            <img src="https://picsum.photos/160/200?random=1&grayscale" alt="书籍封面-春风沉醉">
+                        </div>
+                        <div class="book-info">
+                            <h4>春风沉醉的夜晚</h4>
+                            <p class="author">郁达夫 等</p>
+                            <p class="price">¥39.8</p>
+                        </div>
+                        <div class="hover-detail" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,250,225,0.92); display: none; padding: 15px; box-sizing: border-box; border-radius: 12px; pointer-events: none;">
+                            <p style="font-weight: bold; color: #2e5e3e;">🌸 编辑推荐</p>
+                            <p style="font-size: 0.9rem;">“春天该很好，你若尚在场。” 经典散文集，附赠春韵书签。</p>
+                            <span class="fake-btn" style="display: inline-block; margin-top: 8px; background: #b48c5c; color: white; padding: 4px 12px; border-radius: 30px; font-size: 0.8rem; cursor: pointer; pointer-events: auto;">立即购买</span>
+                        </div>
+                    </div>
+                    <div class="book-card">
+                        <div class="book-cover">
+                            <img src="https://picsum.photos/160/200?random=2&seed=book2" alt="书-代码之外">
+                        </div>
+                        <div class="book-info">
+                            <h4>代码之外的春天</h4>
+                            <p class="author">林溪</p>
+                            <p class="price">¥56.0</p>
+                        </div>
+                    </div>
+                    <div class="book-card">
+                        <div class="book-cover">
+                            <img src="https://picsum.photos/160/200?random=3&seed=book3" alt="书-园艺智慧">
+                        </div>
+                        <div class="book-info">
+                            <h4>园艺智慧</h4>
+                            <p class="author">Monty Don</p>
+                            <p class="price">¥88.0</p>
+                        </div>
+                    </div>
+                    <div class="book-card">
+                        <div class="book-cover">
+                            <img src="https://picsum.photos/160/200?random=4&seed=book4" alt="书-设计中的设计">
+                        </div>
+                        <div class="book-info">
+                            <h4>设计中的设计</h4>
+                            <p class="author">原研哉</p>
+                            <p class="price">¥72.5</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hot-recommend">
+                <h2 class="section-title">🔥 热门推荐</h2>
+                <div class="hot-list clearfix">
+                    <div class="hot-item">
+                        <img src="https://picsum.photos/100/130?random=10&seed=hot1" alt="热销1">
+                        <span>《三体》</span>
+                    </div>
+                    <div class="hot-item">
+                        <img src="https://picsum.photos/100/130?random=11&seed=hot2" alt="热销2">
+                        <span>《活着》</span>
+                    </div>
+                    <div class="hot-item">
+                        <img src="https://picsum.photos/100/130?random=12&seed=hot3" alt="热销3">
+                        <span>《百年孤独》</span>
+                    </div>
+                    <div class="hot-item">
+                        <img src="https://picsum.photos/100/130?random=13&seed=hot4" alt="热销4">
+                        <span>《人类群星闪耀时》</span>
+                    </div>
+                    <div class="hot-item">
+                        <img src="https://picsum.photos/100/130?random=14&seed=hot5" alt="热销5">
+                        <span>《解忧杂货店》</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="new-books">
+                <h2 class="section-title">📅 新书上市</h2>
+                <table class="new-book-table">
+                    <thead>
+                        <tr>
+                            <th>书名</th>
+                            <th>作者</th>
+                            <th>定价</th>
+                            <th>上架时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>春山可望</td>
+                            <td>王这么</td>
+                            <td>¥48.0</td>
+                            <td>2026-04-10</td>
+                        </tr>
+                        <tr>
+                            <td>AI 未来进行式</td>
+                            <td>李开复 / 陈楸帆</td>
+                            <td>¥79.9</td>
+                            <td>2026-04-01</td>
+                        </tr>
+                        <tr>
+                            <td>食南之徒</td>
+                            <td>马伯庸</td>
+                            <td>¥56.0</td>
+                            <td>2026-03-28</td>
+                        </tr>
+                        <tr>
+                            <td>世上为什么要有图书馆</td>
+                            <td>杨素秋</td>
+                            <td>¥58.0</td>
+                            <td>2026-03-15</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <div class="right-fixed-ad">
+            <div class="ad-card">
+                <h3>🎁 春韵限时福利</h3>
+                <p>全场自营图书满299减50<br>优惠码: SPRING50</p>
+                <div class="coupon" style="cursor: pointer;">点击领取专享券 →</div>
+            </div>
+            <div class="ad-card">
+                <h3>📌 精选专题</h3>
+                <ul class="ad-list">
+                    <li><a href="#">🌿 春日阅读计划</a></li>
+                    <li><a href="#">📚 4.23读书日</a></li>
+                    <li><a href="#">👶 童书每满100减30</a></li>
+                </ul>
+            </div>
+            <div class="ad-card fixed-tip">
+                <p style="font-size: 0.9rem;">📍 固定定位广告<br>滚动时始终可见</p>
+                <small style="display: block; margin-top: 8px; color: #a0522d;">(右侧栏固定)</small>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 20px 0; margin-top: 30px; color: #6b4f3c; border-top: 1px dashed #d4b48c; clear: both;">
+        <p>🌸 春韵数字展销平台 · 实验任务2 · 浮动/定位/悬停效果  |  班号: 软件221 学号后3位: 123</p>
+    </footer>
+</body>
+</html>
