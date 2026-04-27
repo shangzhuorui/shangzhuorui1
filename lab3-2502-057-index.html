@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>春韵 · 数字展销平台（含登录注册）</title>
+    <link rel="stylesheet" href="css/lab3-01-123-index.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-inner">
+            <div class="logo-area">
+                <img src="img/logo-placeholder.svg" alt="春韵Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                <span class="logo-text fallback-logo" style="display: none;">🌸春韵·书坊</span>
+                <h1 class="site-title">春韵数字展销</h1>
+            </div>
+            <div class="header-actions">
+                <nav class="top-nav">
+                    <ul class="nav-menu clearfix">
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">新书上架</a></li>
+                        <li><a href="#">畅销榜</a></li>
+                        <li><a href="#">关于春韵</a></li>
+                        <li><a href="#">联系</a></li>
+                    </ul>
+                </nav>
+                <a class="login-btn" id="showLoginBtn">🔐 登录</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container main-content clearfix">
+        <aside class="sidebar-left" style="position: relative; top: 0; left: 0;">
+            <div class="category-box">
+                <h3>📚 图书分类</h3>
+                <ul class="category-nav">
+                    <li><a href="#">文学小说</a></li>
+                    <li><a href="#">人文社科</a></li>
+                    <li><a href="#">经济管理</a></li>
+                    <li><a href="#">科技IT</a></li>
+                    <li><a href="#">艺术生活</a></li>
+                    <li><a href="#">少儿绘本</a></li>
+                    <li><a href="#">教育考试</a></li>
+                    <li><a href="#">进口原版</a></li>
+                </ul>
+            </div>
+            <div class="left-tip" style="position: relative; top: 5px; margin-top: 15px;">
+                <p>✨ 会员专享 满99减20</p>
+            </div>
+        </aside>
+
+        <main class="content-middle">
+            <section class="book-showcase">
+                <h2 class="section-title">📖 主编力荐 · 春韵必读</h2>
+                <div class="book-grid">
+                    <div class="book-card featured-book" style="position: relative;">
+                        <div class="book-cover">
+                            <img src="https://picsum.photos/160/200?random=1&grayscale" alt="书籍封面-春风沉醉">
+                        </div>
+                        <div class="book-info">
+                            <h4>春风沉醉的夜晚</h4>
+                            <p class="author">郁达夫 等</p>
+                            <p class="price">¥39.8</p>
+                        </div>
+                        <div class="hover-detail" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,250,225,0.92); display: none; padding: 15px; box-sizing: border-box; border-radius: 12px; pointer-events: none;">
+                            <p style="font-weight: bold; color: #2e5e3e;">🌸 编辑推荐</p>
+                            <p style="font-size: 0.9rem;">“春天该很好，你若尚在场。” 经典散文集，附赠春韵书签。</p>
+                            <span class="fake-btn" style="display: inline-block; margin-top: 8px; background: #b48c5c; color: white; padding: 4px 12px; border-radius: 30px; font-size: 0.8rem; cursor: pointer; pointer-events: auto;">立即购买</span>
+                        </div>
+                    </div>
+                    <div class="book-card">
+                        <div class="book-cover">
+                            <img src="https://picsum.photos/160/200?random=2&seed=book2" alt="书-代码之外">
+                        </div>
+                        <div class="book-info">
+                            <h4>代码之外的春天</h4>
+                            <p class="author">林溪</p>
+                            <p class="price">¥56.0</p>
+                        </div>
+                    </div>
+                    <div class="book-card">
+                        <div class="book-cover">
+                            <img src="https://picsum.photos/160/200?random=3&seed=book3" alt="书-园艺智慧">
+                        </div>
+                        <div class="book-info">
+                            <h4>园艺智慧</h4>
+                            <p class="author">Monty Don</p>
+                            <p class="price">¥88.0</p>
+                        </div>
+                    </div>
+                    <div class="book-card">
+                        <div class="book-cover">
+                            <img src="https://picsum.photos/160/200?random=4&seed=book4" alt="书-设计中的设计">
+                        </div>
+                        <div class="book-info">
+                            <h4>设计中的设计</h4>
+                            <p class="author">原研哉</p>
+                            <p class="price">¥72.5</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hot-recommend">
+                <h2 class="section-title">🔥 热门推荐</h2>
+                <div class="hot-list clearfix">
+                    <div class="hot-item"><img src="https://picsum.photos/100/130?random=10&seed=hot1" alt="热销1"><span>《三体》</span></div>
+                    <div class="hot-item"><img src="https://picsum.photos/100/130?random=11&seed=hot2" alt="热销2"><span>《活着》</span></div>
+                    <div class="hot-item"><img src="https://picsum.photos/100/130?random=12&seed=hot3" alt="热销3"><span>《百年孤独》</span></div>
+                    <div class="hot-item"><img src="https://picsum.photos/100/130?random=13&seed=hot4" alt="热销4"><span>《人类群星闪耀时》</span></div>
+                    <div class="hot-item"><img src="https://picsum.photos/100/130?random=14&seed=hot5" alt="热销5"><span>《解忧杂货店》</span></div>
+                </div>
+            </section>
+
+            <section class="new-books">
+                <h2 class="section-title">📅 新书上市</h2>
+                <table class="new-book-table">
+                    <thead><tr><th>书名</th><th>作者</th><th>定价</th><th>上架时间</th></tr></thead>
+                    <tbody>
+                        <tr><td>春山可望</td><td>王这么</td><td>¥48.0</td><td>2026-04-10</td></tr>
+                        <tr><td>AI 未来进行式</td><td>李开复 / 陈楸帆</td><td>¥79.9</td><td>2026-04-01</td></tr>
+                        <tr><td>食南之徒</td><td>马伯庸</td><td>¥56.0</td><td>2026-03-28</td></tr>
+                        <tr><td>世上为什么要有图书馆</td><td>杨素秋</td><td>¥58.0</td><td>2026-03-15</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <div class="right-fixed-ad">
+            <div class="ad-card">
+                <h3>🎁 春韵限时福利</h3>
+                <p>全场自营图书满299减50<br>优惠码: SPRING50</p>
+                <div class="coupon">点击领取专享券 →</div>
+            </div>
+            <div class="ad-card">
+                <h3>📌 精选专题</h3>
+                <ul class="ad-list">
+                    <li><a href="#">🌿 春日阅读计划</a></li>
+                    <li><a href="#">📚 4.23读书日</a></li>
+                    <li><a href="#">👶 童书每满100减30</a></li>
+                </ul>
+            </div>
+            <div class="ad-card fixed-tip">
+                <p style="font-size: 0.9rem;">📍 固定定位广告<br>滚动时始终可见</p>
+                <small>(右侧栏固定)</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="loginModal">
+        <div class="login-modal">
+            <span class="close-modal" id="closeModalBtn">&times;</span>
+            <div id="loginForm" style="display: block;">
+                <h2>🌸 会员登录</h2>
+                <div class="input-group">
+                    <label>👤 用户名</label>
+                    <input type="text" id="loginUsername" placeholder="请输入用户名">
+                </div>
+                <div class="input-group">
+                    <label>🔒 密码</label>
+                    <input type="password" id="loginPassword" placeholder="请输入密码">
+                </div>
+                <button type="button" class="login-submit" id="loginSubmitBtn">登录 · 春韵</button>
+                <div class="login-footer">
+                    没有账号？<a href="javascript:void(0);" id="showRegisterLink">立即注册</a>
+                </div>
+                <p class="message" id="loginMessage" style="margin-top:12px; font-size:0.9rem;"></p>
+            </div>
+            <div id="registerForm" style="display: none;">
+                <h2>📝 新用户注册</h2>
+                <div class="input-group">
+                    <label>👤 用户名</label>
+                    <input type="text" id="regUsername" placeholder="4-12位字母或数字">
+                </div>
+                <div class="input-group">
+                    <label>🔒 密码</label>
+                    <input type="password" id="regPassword" placeholder="至少6位">
+                </div>
+                <div class="input-group">
+                    <label>🔒 确认密码</label>
+                    <input type="password" id="regPasswordConfirm" placeholder="再次输入密码">
+                </div>
+                <button type="button" class="login-submit" id="registerSubmitBtn">注册</button>
+                <div class="login-footer">
+                    已有账号？<a href="javascript:void(0);" id="showLoginLink">去登录</a>
+                </div>
+                <p class="message" id="registerMessage" style="margin-top:12px; font-size:0.9rem;"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>🌸 春韵数字展销平台 · 实验任务3 · 浮动/定位/悬停效果 · 登录注册模块  |  班号: 软件221 学号后3位: 123</p>
+    </footer>
+
+    <script>
+        (function() {
+            const modal = document.getElementById('loginModal');
+            const showBtn = document.getElementById('showLoginBtn');
+            const closeBtn = document.getElementById('closeModalBtn');
+            const loginFormDiv = document.getElementById('loginForm');
+            const registerFormDiv = document.getElementById('registerForm');
+            const showRegisterLink = document.getElementById('showRegisterLink');
+            const showLoginLink = document.getElementById('showLoginLink');
+
+            function openModal() { modal.style.display = 'flex'; }
+            function closeModal() { modal.style.display = 'none'; }
+            function showLogin() { loginFormDiv.style.display = 'block'; registerFormDiv.style.display = 'none'; }
+            function showRegister() { loginFormDiv.style.display = 'none'; registerFormDiv.style.display = 'block'; }
+
+            showBtn.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+            window.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.style.display === 'flex') closeModal(); });
+
+            showRegisterLink.addEventListener('click', showRegister);
+            showLoginLink.addEventListener('click', showLogin);
+
+            closeBtn.addEventListener('click', function() { showLogin(); });
+            showBtn.addEventListener('click', function() { showLogin(); });
+
+            const STORAGE_KEY = 'spring_users';
+
+            function getUsers() {
+                const data = localStorage.getItem(STORAGE_KEY);
+                return data ? JSON.parse(data) : [];
+            }
+
+            function saveUsers(users) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+            }
+
+            function findUser(username) {
+                const users = getUsers();
+                return users.find(u => u.username === username);
+            }
+
+            function addUser(username, password) {
+                const users = getUsers();
+                users.push({ username, password });
+                saveUsers(users);
+            }
+
+            const loginUsername = document.getElementById('loginUsername');
+            const loginPassword = document.getElementById('loginPassword');
+            const loginSubmit = document.getElementById('loginSubmitBtn');
+            const loginMessage = document.getElementById('loginMessage');
+
+            loginSubmit.addEventListener('click', function() {
+                const username = loginUsername.value.trim();
+                const password = loginPassword.value;
+                if (!username || !password) {
+                    loginMessage.textContent = '⚠️ 请填写用户名和密码';
+                    loginMessage.style.color = '#b3541c';
+                    return;
+                }
+                const user = findUser(username);
+                if (!user) {
+                    loginMessage.textContent = '❌ 用户不存在，请先注册';
+                    loginMessage.style.color = '#b3541c';
+                } else if (user.password !== password) {
+                    loginMessage.textContent = '❌ 密码错误';
+                    loginMessage.style.color = '#b3541c';
+                } else {
+                    loginMessage.textContent = '✅ 登录成功！欢迎回来，' + username;
+                    loginMessage.style.color = '#2e5e3e';
+                    showBtn.textContent = '👤 ' + username;
+                    showBtn.style.background = '#6b8c5c';
+                    setTimeout(() => { closeModal(); }, 1000);
+                }
+            });
+
+            const regUsername = document.getElementById('regUsername');
+            const regPassword = document.getElementById('regPassword');
+            const regPasswordConfirm = document.getElementById('regPasswordConfirm');
+            const registerSubmit = document.getElementById('registerSubmitBtn');
+            const registerMessage = document.getElementById('registerMessage');
+
+            registerSubmit.addEventListener('click', function() {
+                const username = regUsername.value.trim();
+                const password = regPassword.value;
+                const confirm = regPasswordConfirm.value;
+                if (!username || !password || !confirm) {
+                    registerMessage.textContent = '⚠️ 所有字段都必须填写';
+                    registerMessage.style.color = '#b3541c';
+                    return;
+                }
+                if (username.length < 4 || username.length > 12) {
+                    registerMessage.textContent = '⚠️ 用户名需4-12位';
+                    registerMessage.style.color = '#b3541c';
+                    return;
+                }
+                if (password.length < 6) {
+                    registerMessage.textContent = '⚠️ 密码至少6位';
+                    registerMessage.style.color = '#b3541c';
+                    return;
+                }
+                if (password !== confirm) {
+                    registerMessage.textContent = '⚠️ 两次密码输入不一致';
+                    registerMessage.style.color = '#b3541c';
+                    return;
+                }
+                if (findUser(username)) {
+                    registerMessage.textContent = '⚠️ 用户名已存在，请更换';
+                    registerMessage.style.color = '#b3541c';
+                    return;
+                }
+                addUser(username, password);
+                registerMessage.textContent = '✅ 注册成功！请切换到登录';
+                registerMessage.style.color = '#2e5e3e';
+                regUsername.value = '';
+                regPassword.value = '';
+                regPasswordConfirm.value = '';
+                setTimeout(() => { showLogin(); }, 1200);
+            });
+        })();
+    </script>
+</body>
+</html>
